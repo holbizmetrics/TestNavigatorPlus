@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<Extern href="stdidcmd.h"/>
+	<Extern href="vsshlids.h"/>
+	<Include href="KnownImageIds.vsct"/>
+	<Include href="VSGlobals.vsct"/>
+
+	<Commands package="TestNavigatorPlus">
+		<Groups>
+			<Group guid="TestNavigatorPlusCmdSet" id="MyMenuGroup" priority="0x0600">
+				<Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
+			</Group>
+			<Group guid="TestNavigatorPlusCmdSet" id="MyToolbarGroup" priority="0x0700">
+				<Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
+			</Group>
+		</Groups>
+
+		<Buttons>
+			<Button guid="TestNavigatorPlusCmdSet" id="TestNavigatorCommandId" priority="0x0100" type="Button">
+				<Parent guid="TestNavigatorPlusCmdSet" id="MyMenuGroup" />
+				<Icon guid="ImageCatalogGuid" id="TestApplication" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Test Navigator</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Navigation buttons for bugs -->
+			<Button guid="TestNavigatorPlusCmdSet" id="NavigateToFirstBugId" priority="0x0101" type="Button">
+				<Parent guid="TestNavigatorPlusCmdSet" id="MyToolbarGroup" />
+				<Icon guid="ImageCatalogGuid" id="TestApplication" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>First Bug</ButtonText>
+				</Strings>
+			</Button>
+			<Button guid="TestNavigatorPlusCmdSet" id="NavigateToNextBugId" priority="0x0102" type="Button">
+				<Parent guid="TestNavigatorPlusCmdSet" id="MyToolbarGroup" />
+				<Icon guid="ImageCatalogGuid" id="TestApplication" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Next Bug</ButtonText>
+				</Strings>
+			</Button>
+			<Button guid="TestNavigatorPlusCmdSet" id="NavigateToPreviousBugId" priority="0x0103" type="Button">
+				<Parent guid="TestNavigatorPlusCmdSet" id="MyToolbarGroup" />
+				<Icon guid="ImageCatalogGuid" id="TestApplication" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Previous Bug</ButtonText>
+				</Strings>
+			</Button>
+			<Button guid="TestNavigatorPlusCmdSet" id="NavigateToLastBugId" priority="0x0104" type="Button">
+				<Parent guid="TestNavigatorPlusCmdSet" id="MyToolbarGroup" />
+				<Icon guid="ImageCatalogGuid" id="TestApplication" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Last Bug</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Navigation buttons for tests -->
+			<Button guid="TestNavigatorPlusCmdSet" id="NavigateToFirstTestId" priority="0x0105" type="Button">
+				<Parent guid="TestNavigatorPlusCmdSet" id="MyToolbarGroup" />
+				<Icon guid="ImageCatalogGuid" id="TestApplication" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>First Test</ButtonText>
+				</Strings>
+			</Button>
+			<Button guid="TestNavigatorPlusCmdSet" id="NavigateToNextTestId" priority="0x0106" type="Button">
+				<Parent guid="TestNavigatorPlusCmdSet" id="MyToolbarGroup" />
+				<Icon guid="ImageCatalogGuid" id="TestApplication" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Next Test</ButtonText>
+				</Strings>
+			</Button>
+			<Button guid="TestNavigatorPlusCmdSet" id="NavigateToPreviousTestId" priority="0x0107" type="Button">
+				<Parent guid="TestNavigatorPlusCmdSet" id="MyToolbarGroup" />
+				<Icon guid="ImageCatalogGuid" id="TestApplication" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Previous Test</ButtonText>
+				</Strings>
+			</Button>
+			<Button guid="TestNavigatorPlusCmdSet" id="NavigateToLastTestId" priority="0x0108" type="Button">
+				<Parent guid="TestNavigatorPlusCmdSet" id="MyToolbarGroup" />
+				<Icon guid="ImageCatalogGuid" id="TestApplication" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Last Test</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Navigation buttons for errors -->
+			<Button guid="TestNavigatorPlusCmdSet" id="NavigateToFirstErrorId" priority="0x0109" type="Button">
+				<Parent guid="TestNavigatorPlusCmdSet" id="MyToolbarGroup" />
+				<Icon guid="ImageCatalogGuid" id="TestApplication" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>First Error</ButtonText>
+				</Strings>
+			</Button>
+			<Button guid="TestNavigatorPlusCmdSet" id="NavigateToNextErrorId" priority="0x010A" type="Button">
+				<Parent guid="TestNavigatorPlusCmdSet" id="MyToolbarGroup" />
+				<Icon guid="ImageCatalogGuid" id="TestApplication" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Next Error</ButtonText>
+				</Strings>
+			</Button>
+			<Button guid="TestNavigatorPlusCmdSet" id="NavigateToPreviousErrorId" priority="0x010B" type="Button">
+				<Parent guid="TestNavigatorPlusCmdSet" id="MyToolbarGroup" />
+				<Icon guid="ImageCatalogGuid" id="TestApplication" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Previous Error</ButtonText>
+				</Strings>
+			</Button>
+			<Button guid="TestNavigatorPlusCmdSet" id="NavigateToLastErrorId" priority="0x010C" type="Button">
+				<Parent guid="TestNavigatorPlusCmdSet" id="MyToolbarGroup" />
+				<Icon guid="ImageCatalogGuid" id="TestApplication" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Last Error</ButtonText>
+				</Strings>
+			</Button>
+		</Buttons>
+	</Commands>
+
+	<Symbols>
+		<GuidSymbol name="TestNavigatorPlus" value="{6afac6ed-8645-48b8-9943-dbcc9892fc29}" />
+
+		<GuidSymbol name="TestNavigatorPlusCmdSet" value="{12345678-1234-1234-1234-123456789012}">
+			<IDSymbol name="MyMenuGroup" value="0x1020" />
+			<IDSymbol name="MyToolbarGroup" value="0x1021" />
+			<IDSymbol name="TestNavigatorCommandId" value="0x0100" />
+			<IDSymbol name="NavigateToFirstBugId" value="0x0101" />
+			<IDSymbol name="NavigateToNextBugId" value="0x0102" />
+			<IDSymbol name="NavigateToPreviousBugId" value="0x0103" />
+			<IDSymbol name="NavigateToLastBugId" value="0x0104" />
+			<IDSymbol name="NavigateToFirstTestId" value="0x0105" />
+			<IDSymbol name="NavigateToNextTestId" value="0x0106" />
+			<IDSymbol name="NavigateToPreviousTestId" value="0x0107" />
+			<IDSymbol name="NavigateToLastTestId" value="0x0108" />
+			<IDSymbol name="NavigateToFirstErrorId" value="0x0109" />
+			<IDSymbol name="NavigateToNextErrorId" value="0x010A" />
+			<IDSymbol name="NavigateToPreviousErrorId" value="0x010B" />
+			<IDSymbol name="NavigateToLastErrorId" value="0x010C" />
+		</GuidSymbol>
+	</Symbols>
+
+	<KeyBindings>
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToFirstBugId" editor="guidVSStd97" key1="F1" key2="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToNextBugId" editor="guidVSStd97" key1="F2"  key2="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToPreviousBugId" editor="guidVSStd97" key1="F3"  key2="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToLastBugId" editor="guidVSStd97" key1="F4"  key2="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToFirstTestId" editor="guidVSStd97" key1="F5"  key2="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToNextTestId" editor="guidVSStd97" key1="F6"  key2="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToPreviousTestId" editor="guidVSStd97" key1="F7"  key2="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToLastTestId" editor="guidVSStd97" key1="F8"  key2="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToFirstErrorId" editor="guidVSStd97" key1="F9"  key2="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToNextErrorId" editor="guidVSStd97" key1="F10"  key2="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToPreviousErrorId" editor="guidVSStd97" key1="F11"  key2="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToLastErrorId" editor="guidVSStd97" key1="F12"  key2="ALT" />
+	</KeyBindings>
+</CommandTable>
