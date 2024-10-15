@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace TestNavigatorPlus
+namespace TestNavigatorPlus.Tests
 {
 	public class TestCoverageResult
 	{

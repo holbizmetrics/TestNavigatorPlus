@@ -153,17 +153,17 @@
 	</Symbols>
 
 	<KeyBindings>
-		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToFirstBugId" editor="guidVSStd97" key1="F1" key2="ALT" />
-		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToNextBugId" editor="guidVSStd97" key1="F2"  key2="ALT" />
-		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToPreviousBugId" editor="guidVSStd97" key1="F3"  key2="ALT" />
-		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToLastBugId" editor="guidVSStd97" key1="F4"  key2="ALT" />
-		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToFirstTestId" editor="guidVSStd97" key1="F5"  key2="ALT" />
-		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToNextTestId" editor="guidVSStd97" key1="F6"  key2="ALT" />
-		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToPreviousTestId" editor="guidVSStd97" key1="F7"  key2="ALT" />
-		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToLastTestId" editor="guidVSStd97" key1="F8"  key2="ALT" />
-		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToFirstErrorId" editor="guidVSStd97" key1="F9"  key2="ALT" />
-		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToNextErrorId" editor="guidVSStd97" key1="F10"  key2="ALT" />
-		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToPreviousErrorId" editor="guidVSStd97" key1="F11"  key2="ALT" />
-		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToLastErrorId" editor="guidVSStd97" key1="F12"  key2="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToFirstBugId" editor="guidVSStd97" key1="F1" mod1="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToNextBugId" editor="guidVSStd97" key1="F2"  mod1="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToPreviousBugId" editor="guidVSStd97" key1="F3"  mod1="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToLastBugId" editor="guidVSStd97" key1="F4"  mod1="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToFirstTestId" editor="guidVSStd97" key1="F5"  mod1="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToNextTestId" editor="guidVSStd97" key1="F6"  mod1="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToPreviousTestId" editor="guidVSStd97" key1="F7"  mod1="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToLastTestId" editor="guidVSStd97" key1="F8"  mod1="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToFirstErrorId" editor="guidVSStd97" key1="F9"  mod1="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToNextErrorId" editor="guidVSStd97" key1="F10"  mod1="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToPreviousErrorId" editor="guidVSStd97" key1="F11"  mode1="ALT" />
+		<KeyBinding guid="TestNavigatorPlusCmdSet" id="NavigateToLastErrorId" editor="guidVSStd97" key1="F12"  mode1="ALT" />
 	</KeyBindings>
 </CommandTable>

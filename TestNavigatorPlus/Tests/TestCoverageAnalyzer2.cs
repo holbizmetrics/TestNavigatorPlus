@@ -10,7 +10,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestNavigatorPlus
+namespace TestNavigatorPlus.Tests
 {
 	public class TestCoverageAnalyzer2
 	{

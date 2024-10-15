@@ -3,20 +3,25 @@ using EnvDTE80;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio;
 using System.Collections.Generic;
 using System.Linq;
+using TestNavigatorPlus.Tests;
+using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.TextManager.Interop;
 
-namespace TestNavigatorPlus
+namespace TestNavigatorPlus.Navigation
 {
-	internal class NavigationHelper
+	public class NavigationHelper
 	{
-		private static DTE2 _dte;
+		private DTE2 _dte;
 		private IServiceProvider ServiceProvider;
 		public NavigationHelper(DTE2 dte2, IServiceProvider serviceProvider)
 		{
 			_dte = dte2;
 			ServiceProvider = serviceProvider;
+			dte2.ToolWindows.ErrorList.ShowErrors = true;
+			dte2.ToolWindows.ErrorList.ShowMessages = true;
+			dte2.ToolWindows.ErrorList.ShowWarnings = true;
 		}
 		public List<NavigationItem> GetBugsInSolution()
 		{
@@ -64,7 +69,7 @@ namespace TestNavigatorPlus
 			}
 		}
 
-		private static List<NavigationItem> GetTestsInSolution()
+		public List<NavigationItem> GetTestsInSolution()
 		{
 			var tests = new List<NavigationItem>();
 			if (_dte == null)
@@ -121,46 +126,23 @@ namespace TestNavigatorPlus
 				}
 			}
 		}
-		private List<NavigationItem> GetCompilerErrors(TestNavigatorCommand testNavigatorCommand)
+		public List<NavigationItem> GetCompilerErrors()
 		{
+			List<NavigationItem> errorList = new List<NavigationItem>();
 			ThreadHelper.ThrowIfNotOnUIThread();
-
-			var errorList = new List<NavigationItem>();
-
-			// Get the SVsTaskList service
-			var taskList = ServiceProvider.GetService(typeof(SVsTaskList)) as IVsTaskList;
-			if (taskList != null)
+			EnvDTE80.DTE2 dte2 = ServiceProvider.GetService(typeof(EnvDTE.DTE)) as DTE2;
+			ErrorItems errors = dte2.ToolWindows.ErrorList.ErrorItems;
+			for (int i = 0; i < errors.Count; i++)
 			{
-				// Get the list of error items
-				if (taskList.EnumTaskItems(out IVsEnumTaskItems enumTaskItems) == VSConstants.S_OK)
-				{
-					IVsTaskItem[] taskItems = new IVsTaskItem[1];
-					uint fetched = 0;
-
-					while (enumTaskItems.Next(1, taskItems) == VSConstants.S_OK && fetched == 1)
-					{
-						var taskItem = taskItems[0];
-
-						// Get the error details
-						taskItem.Column(out int column);
-						taskItem.Line(out int lineNumber);
-						taskItem.CanDelete(out int canDelete);
-						taskItem.get_Text(out string errorMessage);
-						taskItem.get_Checked(out int isChecked);
-						taskItem.Document(out string filePath);
-						taskItem.HasHelp(out int hasHelp);
-						taskItem.ImageListIndex(out int imageIndex);
-						taskItem.SubcategoryIndex(out int isReadOnly);
-
-						errorList.Add(new NavigationItem
-						{
-							Name = errorMessage,
-							FilePath = filePath,
-							LineNumber = lineNumber + 1, // Line numbers are zero-based
-							TaskItem = taskItem
-						});
-					}
-				}
+				ErrorItem item = errors.Item(i);
+				NavigationItem navigationItem = new NavigationItem();
+				navigationItem.ColumnNumber = item.Column;
+				navigationItem.LineNumber = item.Line;
+				navigationItem.FilePath = item.FileName;
+				//navigationItem.BugSeverity = item.ErrorLevel
+				navigationItem.Description = item.Description;
+				navigationItem.Project = item.Project;
+				errorList.Add(navigationItem);
 			}
 			return errorList;
 		}
@@ -256,5 +238,43 @@ namespace TestNavigatorPlus
 				OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
 		}
 
+
+	public void GetAllBookmarks()
+	{
+		foreach (EnvDTE.Project project in _dte.Solution.Projects)
+		{
+			GetBookmarksInProject(project);
+		}
+	}
+
+	private void GetBookmarksInProject(EnvDTE.Project project)
+	{
+		foreach (ProjectItem item in project.ProjectItems)
+		{
+			if (item.SubProject != null)
+			{
+				GetBookmarksInProject(item.SubProject);
+			}
+			else if (item.FileCodeModel != null)
+			{
+				GetBookmarksInFile(item);
+			}
+		}
+	}
+
+	private void GetBookmarksInFile(ProjectItem item)
+	{
+		TextDocument textDoc = (TextDocument)item.Document.Object("TextDocument");
+		EditPoint editPoint = textDoc.StartPoint.CreateEditPoint();
+
+		while (editPoint.FindPattern("{BOOKMARK}", (int)vsFindOptions.vsFindOptionsNone))
+		{
+			int line = editPoint.Line;
+			string fileName = item.FileNames[0];
+			Console.WriteLine($"Bookmark found in {fileName} at line {line}");
+
+			editPoint.LineDown();
+		}
 	}
 }
+
