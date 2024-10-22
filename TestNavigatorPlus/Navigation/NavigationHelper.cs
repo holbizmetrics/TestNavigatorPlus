@@ -6,8 +6,6 @@ using Microsoft.VisualStudio.Shell.Interop;
 using System.Collections.Generic;
 using System.Linq;
 using TestNavigatorPlus.Tests;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace TestNavigatorPlus.Navigation
 {
@@ -239,41 +237,42 @@ namespace TestNavigatorPlus.Navigation
 		}
 
 
-	public void GetAllBookmarks()
-	{
-		foreach (EnvDTE.Project project in _dte.Solution.Projects)
+		public void GetAllBookmarks()
 		{
-			GetBookmarksInProject(project);
-		}
-	}
-
-	private void GetBookmarksInProject(EnvDTE.Project project)
-	{
-		foreach (ProjectItem item in project.ProjectItems)
-		{
-			if (item.SubProject != null)
+			foreach (EnvDTE.Project project in _dte.Solution.Projects)
 			{
-				GetBookmarksInProject(item.SubProject);
-			}
-			else if (item.FileCodeModel != null)
-			{
-				GetBookmarksInFile(item);
+				GetBookmarksInProject(project);
 			}
 		}
-	}
 
-	private void GetBookmarksInFile(ProjectItem item)
-	{
-		TextDocument textDoc = (TextDocument)item.Document.Object("TextDocument");
-		EditPoint editPoint = textDoc.StartPoint.CreateEditPoint();
-
-		while (editPoint.FindPattern("{BOOKMARK}", (int)vsFindOptions.vsFindOptionsNone))
+		private void GetBookmarksInProject(EnvDTE.Project project)
 		{
-			int line = editPoint.Line;
-			string fileName = item.FileNames[0];
-			Console.WriteLine($"Bookmark found in {fileName} at line {line}");
+			foreach (ProjectItem item in project.ProjectItems)
+			{
+				if (item.SubProject != null)
+				{
+					GetBookmarksInProject(item.SubProject);
+				}
+				else if (item.FileCodeModel != null)
+				{
+					GetBookmarksInFile(item);
+				}
+			}
+		}
 
-			editPoint.LineDown();
+		private void GetBookmarksInFile(ProjectItem item)
+		{
+			TextDocument textDoc = (TextDocument)item.Document.Object("TextDocument");
+			EditPoint editPoint = textDoc.StartPoint.CreateEditPoint();
+
+			while (editPoint.FindPattern("{BOOKMARK}", (int)vsFindOptions.vsFindOptionsNone))
+			{
+				int line = editPoint.Line;
+				string fileName = item.FileNames[0];
+				Console.WriteLine($"Bookmark found in {fileName} at line {line}");
+
+				editPoint.LineDown();
+			}
 		}
 	}
 }

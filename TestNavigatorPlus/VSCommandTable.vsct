@@ -7,6 +7,17 @@
 	<Include href="VSGlobals.vsct"/>
 
 	<Commands package="TestNavigatorPlus">
+
+		<Menus>
+			<Menu guid="TestNavigatorPlusCmdSet" id="MyToolbarGroup" type="Toolbar" priority="0x0000">
+				<Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
+				<Strings>
+					<ButtonText>Test Navigator Toolbar</ButtonText>
+					<CommandName>Test Navigator Toolbar</CommandName>
+				</Strings>
+			</Menu>
+		</Menus>
+
 		<Groups>
 			<Group guid="TestNavigatorPlusCmdSet" id="MyMenuGroup" priority="0x0600">
 				<Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
