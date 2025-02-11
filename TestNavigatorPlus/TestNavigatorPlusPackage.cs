@@ -13,7 +13,7 @@ namespace TestNavigatorPlus
 	[Guid(PackageGuids.TestNavigatorPlusString)]
 	public sealed class TestNavigatorPackage : AsyncPackage
 	{
-		public const string PackageGuidString = "your-guid-here";
+		public const string PackageGuidString = "6afac6ed-8645-48b8-9943-dbcc9892fc29";
 
 		protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
 		{

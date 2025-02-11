@@ -3,6 +3,7 @@ using EnvDTE80;
 using Microsoft.VisualStudio.Shell.Interop;
 using System.Collections.Generic;
 using System.Diagnostics;
+using StackFrame = System.Diagnostics.StackFrame;
 
 namespace TestNavigatorPlus.Navigation
 {
@@ -21,10 +22,16 @@ namespace TestNavigatorPlus.Navigation
 		EventManager eventsManager = null;
 		NavigationHelper navigationHelper = null;
 		public Navigator(DTE2 dte, IServiceProvider serviceProvider)
-		{ 
-			this.dte = dte;
+		{
+			this.dte = dte ?? throw new ArgumentNullException(nameof(dte));
 			navigationHelper = new NavigationHelper(dte, serviceProvider);
-			
+
+			if (navigationHelper == null)
+			{
+				Debug.WriteLine("NavigationHelper is null");
+				return;
+			}
+
 			tests = navigationHelper.GetTestsInSolution();
 			errors = navigationHelper.GetCompilerErrors();
 			bugs = navigationHelper.GetBugsInSolution();
@@ -32,10 +39,11 @@ namespace TestNavigatorPlus.Navigation
 			eventsManager = new EventManager(dte, navigationHelper);
 		}
 
+
 		// Navigation methods for bugs
 		public void NavigateToFirstBug(object sender, EventArgs e)
 		{
-			Debug.WriteLine("NavigateToFirstBug");
+			Debug.WriteLine(new StackFrame(1).GetMethod());
 			if (bugs?.Count > 0)
 			{
 				currentBugIndex = 0;
@@ -44,7 +52,7 @@ namespace TestNavigatorPlus.Navigation
 		}
 		public void NavigateToNextBug(object sender, EventArgs e)
 		{
-			Debug.WriteLine("NavigateToNextBug");
+			Debug.WriteLine(new StackFrame(1).GetMethod());
 			if (currentBugIndex < bugs?.Count - 1)
 			{
 				currentBugIndex++;
@@ -53,7 +61,7 @@ namespace TestNavigatorPlus.Navigation
 		}
 		public void NavigateToPreviousBug(object sender, EventArgs e)
 		{
-			Debug.WriteLine("NavigateToPreviousBug");
+			Debug.WriteLine(new StackFrame(1).GetMethod());
 			if (currentBugIndex > 0)
 			{
 				currentBugIndex--;
@@ -62,7 +70,7 @@ namespace TestNavigatorPlus.Navigation
 		}
 		public void NavigateToLastBug(object sender, EventArgs e)
 		{
-			Debug.WriteLine("NavigateToLastBug");
+			Debug.WriteLine(new StackFrame(1).GetMethod());
 			if (bugs?.Count > 0)
 			{
 				currentBugIndex = bugs.Count - 1;
@@ -74,6 +82,7 @@ namespace TestNavigatorPlus.Navigation
 		// Navigation methods for tests
 		public void NavigateToFirstTest(object sender, EventArgs e)
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
 			if (tests?.Count > 0)
 			{
 				currentTestIndex = 0;
@@ -82,6 +91,7 @@ namespace TestNavigatorPlus.Navigation
 		}
 		public void NavigateToNextTest(object sender, EventArgs e)
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
 			if (currentTestIndex < tests?.Count - 1)
 			{
 				currentTestIndex++;
@@ -90,6 +100,7 @@ namespace TestNavigatorPlus.Navigation
 		}
 		public void NavigateToPreviousTest(object sender, EventArgs e)
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
 			if (currentTestIndex > 0)
 			{
 				currentTestIndex--;
@@ -98,6 +109,7 @@ namespace TestNavigatorPlus.Navigation
 		}
 		public void NavigateToLastTest(object sender, EventArgs e)
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
 			if (tests?.Count > 0)
 			{
 				currentTestIndex = tests.Count - 1;
@@ -108,6 +120,7 @@ namespace TestNavigatorPlus.Navigation
 		// Navigation methods for errors
 		public void NavigateToFirstError(object sender, EventArgs e)
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
 			if (errors?.Count > 0)
 			{
 				currentErrorIndex = 0;
@@ -116,6 +129,7 @@ namespace TestNavigatorPlus.Navigation
 		}
 		public void NavigateToNextError(object sender, EventArgs e)
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
 			if (currentErrorIndex < errors?.Count - 1)
 			{
 				currentErrorIndex++;
@@ -124,6 +138,7 @@ namespace TestNavigatorPlus.Navigation
 		}
 		public void NavigateToPreviousError(object sender, EventArgs e)
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
 			if (currentErrorIndex > 0)
 			{
 				currentErrorIndex--;
@@ -132,6 +147,7 @@ namespace TestNavigatorPlus.Navigation
 		}
 		public void NavigateToLastError(object sender, EventArgs e)
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
 			if (errors?.Count > 0)
 			{
 				currentErrorIndex = errors.Count - 1;
@@ -145,18 +161,20 @@ namespace TestNavigatorPlus.Navigation
 		/// <param name="item"></param>
 		private void OpenItem(NavigationItem item)
 		{
-			// Open the document
-			var document = dte.Documents.Open(item.FilePath);
-
-			// Ensure the document is active
-			document.Activate();
-
-			// Get the active document's selection
-			var selection = (TextSelection)dte.ActiveDocument.Selection;
-
-			// Move to the specified line number and column (1-based index)
-			selection.MoveToLineAndOffset(item.LineNumber, 1);
+			Debug.WriteLine("OpenItem");
+			try
+			{
+				var document = dte.Documents.Open(item.FilePath);
+				document.Activate();
+				var selection = (TextSelection)dte.ActiveDocument.Selection;
+				selection.MoveToLineAndOffset(item.LineNumber, 1);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine($"Error opening item: {ex.Message}");
+			}
 		}
+
 
 		public void RefreshCompilerErrors()
 		{

@@ -6,6 +6,8 @@ using Microsoft.VisualStudio.Shell.Interop;
 using System.Collections.Generic;
 using System.Linq;
 using TestNavigatorPlus.Tests;
+using System.Diagnostics;
+using StackFrame = System.Diagnostics.StackFrame;
 
 namespace TestNavigatorPlus.Navigation
 {
@@ -23,6 +25,8 @@ namespace TestNavigatorPlus.Navigation
 		}
 		public List<NavigationItem> GetBugsInSolution()
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
+
 			var bugs = new List<NavigationItem>();
 			var solutionProjects = _dte.Solution.Projects;
 
@@ -40,6 +44,8 @@ namespace TestNavigatorPlus.Navigation
 
 		public void FindBugsInProjectItem(ProjectItem item, List<NavigationItem> bugs)
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
+
 			if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile)
 			{
 				var filePath = item.FileNames[1]; // Get the file path
@@ -69,6 +75,8 @@ namespace TestNavigatorPlus.Navigation
 
 		public List<NavigationItem> GetTestsInSolution()
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
+
 			var tests = new List<NavigationItem>();
 			if (_dte == null)
 			{
@@ -88,11 +96,25 @@ namespace TestNavigatorPlus.Navigation
 			return tests;
 		}
 
-		private static void FindTestsInProjectItem(ProjectItem item, List<NavigationItem> tests)
+		public void FindTestsInProjectItem(ProjectItem item, List<NavigationItem> tests)
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
+
+			if (item == null)
+			{
+				Debug.WriteLine("ProjectItem is null");
+				return;
+			}
+
 			if (item.Kind == EnvDTE.Constants.vsProjectItemKindPhysicalFile)
 			{
 				var filePath = item.FileNames[1]; // Get the file path
+				if (string.IsNullOrEmpty(filePath))
+				{
+					Debug.WriteLine("FilePath is null or empty");
+					return;
+				}
+
 				var code = System.IO.File.ReadAllText(filePath);
 				var tree = CSharpSyntaxTree.ParseText(code);
 				var root = tree.GetCompilationUnitRoot();
@@ -124,8 +146,11 @@ namespace TestNavigatorPlus.Navigation
 				}
 			}
 		}
+
 		public List<NavigationItem> GetCompilerErrors()
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
+
 			List<NavigationItem> errorList = new List<NavigationItem>();
 			ThreadHelper.ThrowIfNotOnUIThread();
 			EnvDTE80.DTE2 dte2 = ServiceProvider.GetService(typeof(EnvDTE.DTE)) as DTE2;
@@ -195,6 +220,8 @@ namespace TestNavigatorPlus.Navigation
 
 		public void AnalyzeSourceAndTestFiles()
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
+
 			ThreadHelper.ThrowIfNotOnUIThread();
 
 			var currentDocument = _dte.ActiveDocument;
@@ -220,6 +247,8 @@ namespace TestNavigatorPlus.Navigation
 
 		private void DisplayResults(TestCoverageResult coverageResult)
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
+
 			// Implement logic to display results to the user
 			// This could be a custom tool window, output window, or dialog box
 			var message = $"Total Methods: {coverageResult.TotalMethodsCount}\n" +
@@ -239,6 +268,8 @@ namespace TestNavigatorPlus.Navigation
 
 		public void GetAllBookmarks()
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
+
 			foreach (EnvDTE.Project project in _dte.Solution.Projects)
 			{
 				GetBookmarksInProject(project);
@@ -247,6 +278,8 @@ namespace TestNavigatorPlus.Navigation
 
 		private void GetBookmarksInProject(EnvDTE.Project project)
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
+
 			foreach (ProjectItem item in project.ProjectItems)
 			{
 				if (item.SubProject != null)
@@ -262,6 +295,8 @@ namespace TestNavigatorPlus.Navigation
 
 		private void GetBookmarksInFile(ProjectItem item)
 		{
+			Debug.WriteLine(new StackFrame(1).GetMethod());
+
 			TextDocument textDoc = (TextDocument)item.Document.Object("TextDocument");
 			EditPoint editPoint = textDoc.StartPoint.CreateEditPoint();
 

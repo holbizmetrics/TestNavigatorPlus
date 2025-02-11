@@ -45,8 +45,11 @@ namespace TestNavigatorPlus
 
 		private void OnProjectRenamed(EnvDTE.Project Project, string OldName)
 		{
-			throw new NotImplementedException();
-		}	
+			// Handle project renaming logic here
+			Debug.WriteLine($"Project renamed from {OldName} to {Project.Name}");
+			RefreshEntities();
+		}
+
 		private void OnBuildDone(vsBuildScope Scope, vsBuildAction Action)
 		{
 			ThreadHelper.ThrowIfNotOnUIThread();

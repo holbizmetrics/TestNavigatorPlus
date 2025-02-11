@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace TestNavigatorPlus.Tests
 {
@@ -18,48 +19,50 @@ namespace TestNavigatorPlus.Tests
 		public TestCoverageResult Analyze(string classCode, string testCode)
 		{
 			var results = new TestCoverageResult();
-
-			var classTree = CSharpSyntaxTree.ParseText(classCode);
-			var testTree = CSharpSyntaxTree.ParseText(testCode);
-			var compilation = CSharpCompilation.Create("Analysis")
-				.AddReferences(MetadataReference.CreateFromFile(typeof(object).Assembly.Location))
-				.AddSyntaxTrees(classTree, testTree);
-
-			SyntaxTrees = compilation.SyntaxTrees;
-
-			// Get semantic model for classTree
-			var classModel = compilation.GetSemanticModel(classTree);
-			var testModel = compilation.GetSemanticModel(testTree);
-
-			var publicMethodSymbols = classTree.GetRoot().DescendantNodes()
-				.OfType<MethodDeclarationSyntax>()
-				.Select(method => classModel.GetDeclaredSymbol(method))
-				.Where(symbol => symbol != null && symbol.DeclaredAccessibility == Accessibility.Public)
-				.ToList();
-
-			var testMethodInvocations = testTree.GetRoot().DescendantNodes()
-				.OfType<InvocationExpressionSyntax>();
-
-			results.TotalMethodsCount = publicMethodSymbols.Count;
-
-			foreach (var methodSymbol in publicMethodSymbols)
+			try
 			{
-				var isTested = testMethodInvocations.Any(invocation =>
-				{
-					var invokedSymbol = testModel.GetSymbolInfo(invocation).Symbol;
-					return invokedSymbol?.Equals(methodSymbol) ?? false;
-				});
+				var classTree = CSharpSyntaxTree.ParseText(classCode);
+				var testTree = CSharpSyntaxTree.ParseText(testCode);
+				var compilation = CSharpCompilation.Create("Analysis")
+					.AddReferences(MetadataReference.CreateFromFile(typeof(object).Assembly.Location))
+					.AddSyntaxTrees(classTree, testTree);
 
-				if (isTested)
+				var classModel = compilation.GetSemanticModel(classTree);
+				var testModel = compilation.GetSemanticModel(testTree);
+
+				var publicMethodSymbols = classTree.GetRoot().DescendantNodes()
+					.OfType<MethodDeclarationSyntax>()
+					.Select(method => classModel.GetDeclaredSymbol(method))
+					.Where(symbol => symbol != null && symbol.DeclaredAccessibility == Accessibility.Public)
+					.ToList();
+
+				var testMethodInvocations = testTree.GetRoot().DescendantNodes()
+					.OfType<InvocationExpressionSyntax>();
+
+				results.TotalMethodsCount = publicMethodSymbols.Count;
+
+				foreach (var methodSymbol in publicMethodSymbols)
 				{
-					results.TestedMethods.Add(methodSymbol.ToDisplayString());
-				}
-				else
-				{
-					results.UntestedMethods.Add(methodSymbol.Name);
+					var isTested = testMethodInvocations.Any(invocation =>
+					{
+						var invokedSymbol = testModel.GetSymbolInfo(invocation).Symbol;
+						return invokedSymbol?.Equals(methodSymbol) ?? false;
+					});
+
+					if (isTested)
+					{
+						results.TestedMethods.Add(methodSymbol.ToDisplayString());
+					}
+					else
+					{
+						results.UntestedMethods.Add(methodSymbol.Name);
+					}
 				}
 			}
-
+			catch (Exception ex)
+			{
+				Debug.WriteLine($"Error analyzing code: {ex.Message}");
+			}
 			return results;
 		}
 
