@@ -1,14 +1,18 @@
 ﻿using EnvDTE;
 using EnvDTE80;
-using Microsoft.VisualStudio.Shell.Interop;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using TestNavigatorPlus.Detectors;
 using StackFrame = System.Diagnostics.StackFrame;
 
 namespace TestNavigatorPlus.Navigation
 {
 	public class Navigator
 	{
+		private IProjectEntityDetector testDetector = new TestDetector();
+		private IProjectEntityDetector bugDetector = new BugDetector();
+		private IProjectEntityDetector errorDetector = new ErrorDetector();
 		private List<NavigationItem> bugs = null;
 		private List<NavigationItem> tests = null;
 		private List<NavigationItem> errors = null;
@@ -32,13 +36,12 @@ namespace TestNavigatorPlus.Navigation
 				return;
 			}
 
-			tests = navigationHelper.GetTestsInSolution();
-			errors = navigationHelper.GetCompilerErrors();
-			bugs = navigationHelper.GetBugsInSolution();
+			tests = testDetector.Detect(navigationHelper).ToList();
+			bugs = bugDetector.Detect(navigationHelper).ToList();
+			errors = errorDetector.Detect(navigationHelper).ToList();
 
 			eventsManager = new EventManager(dte, navigationHelper);
 		}
-
 
 		// Navigation methods for bugs
 		public void NavigateToFirstBug(object sender, EventArgs e)
@@ -87,6 +90,10 @@ namespace TestNavigatorPlus.Navigation
 			{
 				currentTestIndex = 0;
 				OpenItem(tests[currentTestIndex]);
+			}
+			else
+			{
+				tests = testDetector.Detect(navigationHelper).ToList();
 			}
 		}
 		public void NavigateToNextTest(object sender, EventArgs e)
@@ -167,7 +174,7 @@ namespace TestNavigatorPlus.Navigation
 				var document = dte.Documents.Open(item.FilePath);
 				document.Activate();
 				var selection = (TextSelection)dte.ActiveDocument.Selection;
-				selection.MoveToLineAndOffset(item.LineNumber, 1);
+				selection.MoveToLineAndOffset(item.LineNumber, 1, false);
 			}
 			catch (Exception ex)
 			{

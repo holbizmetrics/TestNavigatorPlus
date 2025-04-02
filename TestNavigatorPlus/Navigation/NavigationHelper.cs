@@ -66,6 +66,11 @@ namespace TestNavigatorPlus.Navigation
 			}
 			else if (item.Kind == EnvDTE.Constants.vsProjectItemKindSolutionItems)
 			{
+				if (item.ProjectItems == null)
+				{
+					Debug.WriteLine("ProjectItems is null");
+					return;
+				}
 				foreach (ProjectItem subItem in item.ProjectItems)
 				{
 					FindBugsInProjectItem(subItem, bugs); // Recursively search
@@ -140,6 +145,11 @@ namespace TestNavigatorPlus.Navigation
 			}
 			else if (item.Kind == EnvDTE.Constants.vsProjectItemKindSolutionItems)
 			{
+				if (item.ProjectItems == null)
+				{
+					Debug.WriteLine("ProjectItems is null");
+					return;
+				}
 				foreach (ProjectItem subItem in item.ProjectItems)
 				{
 					FindTestsInProjectItem(subItem, tests); // Recursively search

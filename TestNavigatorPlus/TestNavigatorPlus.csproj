@@ -47,7 +47,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Detectors\BugDetector.cs" />
+    <Compile Include="Detectors\Detector.cs" />
+    <Compile Include="Detectors\ErrorDetector.cs" />
+    <Compile Include="Detectors\TestDetector.cs" />
     <Compile Include="EventManager.cs" />
+    <Compile Include="IProjectEntityDetector.cs" />
     <Compile Include="MenuCommandExtensions.cs" />
     <Compile Include="MyToolWindow.cs" />
     <Compile Include="Navigation\NavigationHelper.cs" />
@@ -94,6 +99,9 @@
     <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AutoFixture.NUnit3">
+      <Version>4.18.1</Version>
+    </PackageReference>
     <PackageReference Include="Community.VisualStudio.VSCT" Version="16.0.29.6" PrivateAssets="all" />
     <PackageReference Include="Community.VisualStudio.Toolkit.17" Version="17.0.451" ExcludeAssets="Runtime" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp">
