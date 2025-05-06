@@ -44,6 +44,7 @@
 - [ ] Warnings for catch-all try/catch blocks
 - [ ] Alerts for untagged/uncategorized tests
 - [ ] Lightbulb-style "Fix Suggestions"
+- [ ] Missing test methods AND missing test classes
 
 ### Test File Cleanup Utility
 - [ ] Removes excessive blank lines / normalizes line spacing
