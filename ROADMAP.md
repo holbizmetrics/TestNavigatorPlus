@@ -13,6 +13,7 @@
 - [ ] Tool window scaffolding (initial status dashboard)
 - [ ] Auto-refresh logic (after build or file change)
 - [ ] Minimal telemetry: errors + usage (opt-in)
+- [ ] Context Menu: Run Test (Until Failure) in Code Editor, additionally to: Run Test, Debug Test
 
 ---
 
