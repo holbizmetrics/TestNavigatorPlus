@@ -16,6 +16,7 @@
 - [ ] Auto-refresh logic (after build or file change)
 - [ ] Minimal telemetry: errors + usage (opt-in)
 - [ ] Context Menu: Run Test (Until Failure) in Code Editor, in addition to: Run Test, Debug Test
+- [ ] Sorting Tests: Sort Tests in the Same Order as in the Test Class 
 
 ---
 
