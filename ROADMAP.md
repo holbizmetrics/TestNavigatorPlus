@@ -1,256 +1,274 @@
 # TestNavigatorPlus Roadmap
 
 > ### From Outstanding to Iconic
+> *Building the ultimate test development experience for Visual Studio*
 
 ---
 
-## 🚀 PHASE 0: MVP (v0.1 – v0.5)
-**Goal: Solid foundations for navigation & insights**
+## 🎯 Our Vision
 
-- [x] Toolbar + Command registration
-- [x] Navigation for: Tests, Bugs (TODO/FIXME), Errors
-- [x] Bookmark detection
-- [x] Source-to-Test file switching
-- [x] VSCT toolbar setup & keybindings
-- [ ] Tool window scaffolding (initial status dashboard)
-- [ ] Auto-refresh logic (after build or file change)
-- [ ] Minimal telemetry: errors + usage (opt-in)
-- [ ] Context Menu: Run Test (Until Failure) in Code Editor, in addition to: Run Test, Debug Test
-- [ ] Sorting Tests: Sort Tests in the Same Order as in the Test Class 
+TestNavigatorPlus aims to transform test development from a necessary chore into an **empowering, delightful experience**. We're building features that not only solve today's pain points but anticipate tomorrow's needs, creating a tool that developers will genuinely love to use.
+
+---
+
+## 🚀 PHASE 0: Foundation (v0.1 – v0.5)
+> **Goal: Solid foundations for navigation & insights**
+
+### ✅ Completed
+- [x] Core toolbar infrastructure + command registration
+- [x] Navigation system for tests, bugs (TODO/FIXME), and compiler errors
+- [x] Smart bookmark detection and management
+- [x] Intelligent source-to-test file switching
+- [x] VSCT toolbar setup with customizable keybindings
+
+### 🔨 In Progress
+- [ ] **Tool Window Foundation**: Initial status dashboard with test overview
+- [ ] **Auto-Refresh Logic**: Intelligent updates after builds or file changes
+- [ ] **Privacy-First Telemetry**: Opt-in error reporting and basic usage analytics
+- [ ] **Enhanced Context Menu**: "Run Test Until Failure" in Code Editor, in addition to standard Run Test and Debug Test options
+- [ ] **Test Ordering**: Sort tests in the same order as they appear in the test class (preserving source file sequence)
+
+**Target Completion: Q2 20xy**
 
 ---
 
 ## 🔍 PHASE 1: Developer Workflow Enhancer (v1.0 – v1.2)
-**Goal: Make test filtering, execution, and visibility top-tier**
+> **Goal: Make test filtering, execution, and visibility best-in-class**
 
-- [ ] Persistent test run results
-- [ ] LINQ-based test filtering (category, trait, file, etc.)
-- [ ] Toggleable filters (failed, skipped, passed)
-- [ ] "Run Visible Tests" feature
-- [ ] Test Timeline View (sortable list w/ durations)
-- [ ] Status bar insights: test stats
-- [ ] "Go to Corresponding Test/Source" via shortcut
+### Core Features
+- [ ] **Persistent Test Results**: Maintain test run history and outcomes across sessions
+- [ ] **LINQ-Based Test Filtering**: Advanced filtering by category, trait, file, status, and custom criteria
+- [ ] **Toggleable Filters**: Quick switches for failed, skipped, and passed tests
+- [ ] **Run Visible Tests Feature**: Execute only the tests currently displayed after filtering
+- [ ] **Test Timeline View**: Sortable execution history with duration insights and performance trends
+- [ ] **Status Bar Insights**: Live test statistics and quick performance indicators
+- [ ] **Go to Corresponding Test/Source**: Direct navigation shortcuts between related files
 
-### Nice-to-Haves:
-- [ ] Regex test finder
-- [ ] Collapse/expand test groups in tool window
-- [ ] Pinned tests feature
-- [ ] Manual group creation / tagging
+### Quality of Life Improvements
+- [ ] **Regex Test Finder**: Pattern-based test discovery and advanced search capabilities
+- [ ] **Collapse/Expand Test Groups**: Organized tool window with expandable sections in tree view
+- [ ] **Pinned Tests Feature**: Mark frequently accessed tests for quick access and priority execution
+- [ ] **Manual Group Creation/Tagging**: Custom test collections and user-defined categorization system
+
+**Target Completion: Q3 20xy**
 
 ---
 
-## 🧹 PHASE 1.5: Quality & Cleanup Tools
-**Goal: Improve code hygiene and surface bad practices early**
+## 🧹 PHASE 1.5: Code Quality & Hygiene
+> **Goal: Surface quality issues early and improve code maintainability**
 
 ### Test Code Analyzer
-- [ ] Detects missing asserts or empty test methods
-- [ ] Flags duplicated logic or copy-paste between tests
-- [ ] Warnings for catch-all try/catch blocks
-- [ ] Alerts for untagged/uncategorized tests
-- [ ] Lightbulb-style "Fix Suggestions"
-- [ ] Missing test methods AND missing test classes
+- [ ] **Missing Assert Detection**: Detect missing asserts or empty test methods without verification
+- [ ] **Duplicate Logic Scanner**: Flag duplicated logic or copy-paste patterns between test methods
+- [ ] **Exception Handling Audit**: Warnings for catch-all try/catch blocks that hide important failures
+- [ ] **Test Categorization Checker**: Alerts for untagged/uncategorized test methods
+- [ ] **Quick Fix Suggestions**: Lightbulb-style "Fix Suggestions" for common test issues
+- [ ] **Coverage Gap Analysis**: Identify missing test methods AND missing test classes for comprehensive coverage
 
 ### Test File Cleanup Utility
-- [ ] Removes excessive blank lines / normalizes line spacing
-- [ ] Normalizes line endings
-- [ ] Cleans up web-pasted code (double spacing etc.)
-- [ ] Context menu: "Clean Test Formatting"
-- [ ] Optional: Auto-format on save
+- [ ] **Smart Line Spacing**: Remove excessive blank lines and normalize line spacing automatically
+- [ ] **Line Ending Normalization**: Standardize line endings across test files
+- [ ] **Web-Paste Code Cleanup**: Clean up web-pasted code including double spacing and formatting artifacts
+- [ ] **Context Menu Integration**: "Clean Test Formatting" option directly in code editor context menu
+- [ ] **Auto-Format on Save**: Optional automatic formatting when saving test files
+
+**Target Completion: Q4 20xy**
 
 ---
 
 ## 🧠 PHASE 2: Intelligence & Coverage (v2.0 – v2.5)
-**Goal: Add diagnostics, AI-powered summaries, and test quality layers**
+> **Goal: Add AI-powered insights and comprehensive test quality analysis**
 
-- [ ] Code coverage integration (.coverage parsing + highlighting)
-- [ ] Test Coverage Analyzer results in tool window
-- [ ] Visualizer: tested/untested public methods
-- [ ] Flaky test detection (multiple reruns)
-- [ ] Failure summarization via GPT (opt-in)
-- [ ] "Why did this fail?" trace AI
-- [ ] Smart rerun suggestions
-- [ ] GC/memory insights per test (optional)
+### Coverage Integration
+- [ ] **Visual Coverage Display**: .coverage file parsing + highlighting with inline code coverage display
+- [ ] **Coverage Analytics**: Detailed tool window with comprehensive coverage metrics and trends
+- [ ] **Method Coverage Visualizer**: Clear visual indication of tested/untested public methods
+- [ ] **Coverage Trend Tracking**: Monitor coverage changes over time with historical analysis
+
+### Advanced Diagnostics
+- [ ] **Flaky Test Detection**: Statistical analysis across multiple test reruns to identify unreliable tests
+- [ ] **AI-Powered Failure Summarization**: GPT-assisted failure analysis and "Why did this fail?" trace insights (opt-in)
+- [ ] **Smart Rerun Suggestions**: Intelligent recommendations for targeted test execution
+- [ ] **GC/Memory Insights Per Test**: Optional garbage collection pressure and memory analysis for individual tests
+
+**Target Completion: Q1 20xy+1**
 
 ---
 
-## 🔬 PHASE 2.5: Debugger Visualizer Lite
-**Goal: Enhance test-debug experience with rich live data**
+## 🔬 PHASE 2.5: Enhanced Debugging Experience
+> **Goal: Revolutionary debugging visualization for test development**
 
-- [ ] Inline Variable Visualizer
-- [ ] Highlight changed values during debug
-- [ ] Preview previous values (simple history)
-- [ ] Smart object expansion
-- [ ] Conditional branch hits/shown inline ("Hit"/"Skipped")
-- [ ] Color-coded highlights: exceptions/nulls/warnings
+### Debugger Visualizer
+- [ ] **Inline Variable Visualizer**: Rich variable display with real-time value inspection during debugging
+- [ ] **Value Change Highlighting**: Highlight changed values during debug execution
+- [ ] **Debug History**: Preview previous values with simple history tracking across breakpoints
+- [ ] **Smart Object Expansion**: Intelligent object tree navigation and expansion
+- [ ] **Conditional Branch Coverage**: Color-coded highlights showing "Hit"/"Skipped" status for branches inline
+- [ ] **Exception Context Visualization**: Rich exception display with color-coded highlights for exceptions/nulls/warnings
 
-### Nice-to-Haves:
-- [ ] Expression tracking across frames
-- [ ] Minimal inline graph view (collections, trees)
-- [ ] Breakpoint Analyzer (predict if hit/missed)
+### Advanced Debugging Features
+- [ ] **Expression Tracking**: Monitor expressions across multiple stack frames during debugging sessions
+- [ ] **Minimal Inline Graph View**: Simple visualization for collections, trees, and complex data structures
+- [ ] **Breakpoint Analyzer**: Predict if breakpoints will be hit or missed before execution
+
+**Target Completion: Q2 20xy+1**
 
 ---
 
 ## 🔄 PHASE 3: Integration & Extensibility (v3.0 – v3.5)
-**Goal: Play well with external tools, services, and team workflows**
+> **Goal: Seamless integration with development ecosystem**
 
-- [ ] Plugin system for analyzers: Stryker, BenchmarkDotNet, etc.
-- [ ] GitHub PR test summary (markdown or .trx visual)
-- [ ] VS Code test JSON compatibility
-- [ ] Azure DevOps result integration
-- [ ] Export results to Markdown, HTML, or PDF
-- [ ] Internal API for external test providers
+### External Tool Support
+- [ ] **Plugin Architecture**: Extensible system for analyzers supporting Stryker, BenchmarkDotNet, and other testing tools
+- [ ] **Mutation Testing**: Comprehensive Stryker.NET integration for advanced test quality assessment
+- [ ] **Performance Testing**: BenchmarkDotNet result visualization and analysis
+- [ ] **VS Code Compatibility**: Test JSON compatibility layer for cross-platform development
 
----
+### CI/CD Integration
+- [ ] **GitHub PR Integration**: Test summary generation in markdown or .trx visual format for pull requests
+- [ ] **Azure DevOps Results**: Pipeline result integration and synchronization
+- [ ] **Multi-Format Export**: Export results to Markdown, HTML, or PDF formats
+- [ ] **Internal API**: Extensible API for external test providers and custom integrations
 
-## ✨ PHASE 3.5+: Legendary Stretch Features
-**Goal: Make the tool unforgettable**
-
-- [ ] Context-aware quick actions (e.g., failed test → last screenshot)
-- [ ] Find tests that touch a specific method
-- [ ] Test repetition insights: detect slowdowns, leaks
-- [ ] Virtual test suites: user-created dynamic groups
-- [ ] Test Data Sniffing: refactor magic strings/test cases
-- [ ] Idle-time suggestions: rerun failures when idle
-- [ ] Visual diff of input/output for data-driven tests
+**Target Completion: Q3 20xy+1**
 
 ---
 
-## 💖 PHASE 4: Soul & Delight
-**Goal: Make it iconic, memorable, and joyful to use**
+## ✨ PHASE 4: Legendary Features (v4.0+)
+> **Goal: Industry-defining capabilities that inspire joy**
 
-### Sensory Feedback
-- [ ] Subtle sound cues on pass/fail (optional)
-- [ ] Audio/vibration on long test run complete
+### Context-Aware Intelligence
+- [ ] **Context-Aware Quick Actions**: Smart actions like failed test → last screenshot for enhanced debugging
+- [ ] **Find Tests That Touch Method**: Discover all tests that exercise a specific method or code path
+- [ ] **Test Repetition Insights**: Detect slowdowns and memory leaks through repeated test execution analysis
+- [ ] **Virtual Test Suites**: User-created dynamic test groups with flexible criteria
+- [ ] **Test Data Sniffing**: Refactor magic strings and test cases automatically
+- [ ] **Idle-Time Test Suggestions**: Rerun failed tests automatically when development session is idle
+
+### Developer Experience Magic
+- [ ] **Visual Diff Engine**: Input/output comparison engine for data-driven tests
+- [ ] **Zen Mode**: Stress-reducing calming animation or glow during long test operations
+- [ ] **ASCII Art Celebrations**: Rocket launches for 100% pass rates and other milestone animations
+- [ ] **Achievement System**: Gamified feedback including test streaks, coverage boosts, and refactor wins
+
+**Target Completion: 20xy+?**
+
+---
+
+## 💖 PHASE 5: Soul & Delight
+> **Goal: Make testing genuinely enjoyable**
+
+### Sensory & Emotional Design
+- [ ] **Subtle Sound Cues**: Optional sound feedback on pass/fail results for enhanced sensory experience
+- [ ] **Audio/Vibration Feedback**: Notification when long test runs complete
+- [ ] **ASCII Art Animations**: Rocket launches for 100% pass rates and other delightful milestone celebrations
+- [ ] **Debugger Cat Mascot**: Friendly debugging companion with contextual commentary and tips
 
 ### Smart Delight
 - [ ] "Zen Mode" during test runs (calming animation or glow)
 - [ ] ASCII animations (e.g., rocket launches for 100% pass)
 - [ ] Debugger Cat mascot with commentary
 
-### AI Partnering
-- [ ] GPT prompt: "Suggest assertions for this test"
-- [ ] GPT prompt: "Suggest edge cases for this method"
-- [ ] GPT prompt: "Why is this test flaky?"
+### AI-Powered Mentorship
+- [ ] **GPT Test Assertion Suggestions**: "Suggest assertions for this test" AI-powered recommendations
+- [ ] **GPT Edge Case Generator**: "Suggest edge cases for this method" intelligent test scenario creation
+- [ ] **GPT Flaky Test Analysis**: "Why is this test flaky?" AI-powered diagnosis and repair suggestions
 
-### Developer Love
+### Community & Sharing
 - [ ] Gamified feedback: test streaks, coverage boosts
-- [ ] Shareable badges: test refactor wins, test suite mastery
-- [ ] Retro mode: toggle 90s debug visuals for fun
+- [ ] **Shareable Badges**: Test refactor wins, test suite mastery, and other achievement sharing
+- [ ] **Retro Mode**: Toggle 90s debug visuals for fun and nostalgic development experience
+- [ ] **Developer Streak Tracking**: Test streaks, coverage boosts, and consistent testing habit encouragement
 
 ---
 
-## 👥 FUTURE: Team & Collaboration (Nice-to-Have)
-**Goal: Help teams align on test activity**
+## 👥 Team & Collaboration Features (Future)
+> **Goal: Enhanced team coordination and knowledge sharing**
 
-- [ ] View tests recently run by teammates (repo-based)
-- [ ] Sync pinned/failing test sets across devs
-- [ ] Shared test group links / "Test playlists"
-- [ ] Live view: what others are running
-
----
-
-## 📅 Release Milestones
-*Coming soon*
+- [ ] **View Tests Recently Run by Teammates**: Repo-based activity showing what tests team members have executed
+- [ ] **Sync Pinned/Failing Test Sets**: Share pinned tests and failing test collections across development team
+- [ ] **Shared Test Group Links**: "Test playlists" that can be shared and synchronized between developers
+- [ ] **Live Team Test Activity**: Real-time view of what tests others are currently running
 
 ---
 
-# Pain Points Addressed & Feature Mapping
+## 📊 Pain Points → Solutions Map
 
-## Common Developer Pain Points
-
-| Pain Point                          | Addressed In Phase(s) | Feature(s)                                  |
-|--------------------------------------|-----------------------|---------------------------------------------|
-| Slow test discovery                  | 0, 1                  | Fast, incremental parsing, auto-refresh     |
-| Poor feedback loop                   | 1, 2                  | Live test feedback, persistent results      |
-| Difficult navigation                 | 0, 1                  | Source-to-test switching, deep linking      |
-| Test maintenance                     | 1.5, 2                | Analyzer, refactoring tools                 |
-| Debugging/diagnostics                | 2.5                   | Debugger visualizer, one-click debug        |
-| Test data management                 | 1.5, 3+               | Data helpers, test data sniffing            |
-| CI/CD discrepancies                  | 3                     | CI/CD test result sync, Azure DevOps        |
-| Coverage visibility                  | 2                     | Inline coverage, coverage analyzer          |
-| Test code quality                    | 1.5                   | Linting, fix suggestions                    |
-| Workflow flexibility                 | 1, 3                  | Custom shortcuts, plugin system             |
+| Developer Pain Point | Solution Phase | Key Features |
+|---------------------|---------------|--------------|
+| Slow test discovery | Phase 0-1 | Fast incremental parsing, auto-refresh |
+| Poor feedback loops | Phase 1-2 | Live test feedback, persistent results |
+| Navigation difficulties | Phase 0-1 | Smart switching, deep linking |
+| Test maintenance burden | Phase 1.5-2 | Analyzer tools, refactoring assistance |
+| Debugging complexity | Phase 2.5 | Rich debugger visualizer, one-click debug |
+| Test data management | Phase 1.5, 3+ | Data helpers, intelligent test data analysis |
+| CI/CD disconnects | Phase 3 | Pipeline integration, result synchronization |
+| Coverage visibility | Phase 2 | Inline coverage, comprehensive analytics |
+| Code quality issues | Phase 1.5 | Automated linting, fix suggestions |
+| Workflow inflexibility | Phase 1, 3 | Custom shortcuts, extensible plugin system |
 
 ---
 
-## Example User Stories by Feature
+## 🎯 Success Metrics
 
-Here are user stories for each major feature, using the recommended template:  
-**As a [type of user], I want to [do something] so that [benefit]**.
+### Technical Excellence
+- **Performance**: <100ms test discovery in solutions with 10,000+ tests
+- **Reliability**: 99.9% uptime with zero data loss
+- **Compatibility**: Support for all major .NET test frameworks
 
-### 1. **Fast, Incremental Test Discovery**
-- **Feature**: Use file watchers and incremental parsing to instantly detect new/changed tests.
-- **Benefit**: Reduces lag in large solutions, keeps test list always up-to-date.
+### Developer Impact
+- **Productivity**: 25% reduction in time spent on test-related tasks
+- **Quality**: 40% increase in test coverage across adopting teams
+- **Satisfaction**: 90%+ positive feedback from active users
 
-### 2. **Live Test Feedback**
-- **Feature**: Auto-run impacted tests on file save (like NCrunch or VS Live Unit Testing).
-- **Benefit**: Immediate feedback loop, faster bug detection.
-
-### 3. **Enhanced Navigation**
-- **Feature**: "Find all tests for this method/class" and "Find all code covered by this test".
-- **Feature**: Deep linking between test and code, even for parameterized/data-driven tests.
-- **Benefit**: Saves time, improves code/test traceability.
-
-### 4. **Test Refactoring Tools**
-- **Feature**: Safe rename/move refactoring for tests, with auto-update of references.
-- **Feature**: Detect and flag orphaned or duplicate tests.
-- **Benefit**: Easier test maintenance, reduces technical debt.
-
-### 5. **Integrated Debugging**
-- **Feature**: One-click "Debug failed test" with context (variables, stack trace).
-- **Benefit**: Faster diagnosis of test failures.
-
-### 6. **Test Data Helpers**
-- **Feature**: Snippets or templates for common test data/mocking patterns.
-- **Feature**: Integration with popular mocking libraries (Moq, NSubstitute).
-- **Benefit**: Reduces boilerplate, encourages good practices.
-
-### 7. **CI/CD Test Result Sync**
-- **Feature**: Compare local and CI test results, highlight discrepancies.
-- **Benefit**: Reduces "it works on my machine" issues.
-
-### 8. **Granular Coverage Visualization**
-- **Feature**: Inline code coverage display in editor (e.g., colored gutter markers).
-- **Benefit**: Makes coverage actionable and visible during coding.
-
-### 9. **Test Code Quality Analysis**
-- **Feature**: Linting and suggestions for test code (naming, structure, best practices).
-- **Benefit**: Encourages maintainable, high-quality tests.
-
-### User-Customizable Shortcuts and Views
-- *As a developer, I want to customize shortcuts and the layout of my test panel so that my workflow matches my personal preferences.*
+### Community Growth
+- **Adoption**: 100,000+ Visual Studio installations by end of 20xy+?
+- **Contribution**: Active community with 50+ contributors
+- **Ecosystem**: 20+ third-party integrations and extensions
 
 ---
 
-## Feedback Loops & Quality Commitment
+## 🗓 Release Timeline
 
-- **Feedback Loops:** After each phase, we’ll gather user feedback via GitHub issues, surveys, and telemetry to inform the next phase.
-- **Accessibility & Performance:** These are core priorities at every phase, ensuring everyone can use TestNavigatorPlus efficiently.
-- **Delight Features:** We’ll introduce small, delightful touches early and often, such as Zen Mode or subtle sound cues, to make testing enjoyable.
-
----
-
-## Summary Table: Features and Addressed Pain Points
-
-| Feature Area                 | Suggested Addition                                  | Pain Point Addressed                |
-|------------------------------|----------------------------------------------------|-------------------------------------|
-| Test Discovery               | Fast, incremental parsing, auto-refresh            | Slow/laggy test discovery           |
-| Feedback Loop                | Live test feedback on save, persistent results     | Poor feedback loop                  |
-| Navigation                   | Deep linking, source-to-test switching             | Difficult navigation                |
-| Refactoring                  | Safe rename/move, orphan detection                 | Test maintenance                    |
-| Debugging                    | One-click debug failed test, visualizer            | Debugging/diagnostics               |
-| Test Data                    | Mocking/data helpers, snippets                     | Test data management                |
-| CI/CD Integration            | Local/CI test result comparison                    | CI/CD discrepancies                 |
-| Coverage                     | Inline coverage visualization, analyzer            | Coverage visibility                 |
-| Code Quality                 | Test linting/suggestions, analyzer                 | Test code quality                   |
-| Customization                | Shortcuts, plugin system, panel layout options     | Workflow flexibility                |
+```
+20xy Q2      Phase 0 Complete        MVP with core navigation
+20xy Q3      Phase 1 Complete        Enhanced workflow features
+20xy Q4      Phase 1.5 Complete      Code quality and hygiene
+20xy+1 Q1    Phase 2 Complete        AI insights and coverage
+20xy+1 Q2    Phase 2.5 Complete      Debugger visualizer
+20xy+1 Q3    Phase 3 Complete        Integration and extensibility
+20xy+2 Q1    Phases 4-5              Legendary and delight features
+```
 
 ---
 
-## Built with care, for devs who test with precision.
+## 🤝 Community Feedback & Iteration
 
-### *TestNavigatorPlus: From Outstanding to Iconic.*
+After each phase, we commit to:
+- **User Research**: Surveys and interviews with active users
+- **Data-Driven Decisions**: Telemetry analysis to guide feature prioritization
+- **Rapid Response**: Bug fixes and critical improvements within 48 hours
+- **Transparent Communication**: Regular progress updates and roadmap adjustments
 
 ---
 
-**Ready to collaborate or suggest features? Open an issue or join the discussion!**
+## 🚀 Get Involved
+
+This roadmap represents our current vision, but **your input shapes our direction**:
+
+- **📢 Feature Requests**: [Submit ideas via GitHub Issues](https://github.com/your-repo/issues/new?template=feature_request.md)
+- **🗳 Priority Voting**: [Vote on upcoming features](https://github.com/your-repo/discussions/categories/feature-requests)
+- **🧪 Beta Testing**: [Join our early access program](mailto:beta@testnavigatorplus.com)
+- **💬 General Discussion**: [Share thoughts in our community forum](https://github.com/your-repo/discussions)
+
+---
+
+<div align="center">
+
+**Building tomorrow's testing experience, today**
+
+> TestNavigatorPlus — *From Outstanding to Iconic.*
+
+[⭐ Star this repo](https://github.com/your-repo) • [💡 Suggest a feature](https://github.com/your-repo/issues/new) • [🗣 Join discussions](https://github.com/your-repo/discussions)
+
+</div>
